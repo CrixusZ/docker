@@ -207,7 +207,7 @@ services:
     healthcheck:
       # 每隔一s发起一个健康测试，最多重试30次
       test: ["CMD", "pg_isready", "-U", "postgres"]
-      interval: 1s
+      interval: 1s 
       timeout: 3s
       retries: 30
       start_period: 30s
