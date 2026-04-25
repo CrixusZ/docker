@@ -109,7 +109,7 @@ services:
         - BUILDKIT_INLINE_CACHE=1
       cache_from:
         - llmops-api:0.1.0  #  复用已有镜像缓存
-    container_name: llmops-celery
+    container_name: llmops-api:0.1.0
     restart: always
     volumes:
       - ./volumes/app/storage:/app/api/storage
