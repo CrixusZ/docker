@@ -15,6 +15,11 @@ services:
     build:
       context: ../llmops-api
       dockerfile: Dockerfile
+      # 新增：启用BuildKit缓存优化，减少重复构建
+      args:
+        - BUILDKIT_INLINE_CACHE=1
+      cache_from:
+        - llmops-api:0.1.0  # 复用已有镜像缓存
     container_name: llmops-api
     restart: always
     env_file:
@@ -99,6 +104,11 @@ services:
     build:
       context: ../llmops-api
       dockerfile: Dockerfile
+      # 新增：启用BuildKit缓存优化，减少重复构建
+      args:
+        - BUILDKIT_INLINE_CACHE=1
+      cache_from:
+        - llmops-api:0.1.0  #  复用已有镜像缓存
     container_name: llmops-celery
     restart: always
     volumes:
