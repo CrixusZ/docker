@@ -24,8 +24,8 @@ services:
     environment: 
       # 模式为API，代表启用API服务
       MODE: api
-      SERVER_WORKER_AMOUNT: 4
-      SERVER_THREAD_AMOUNT: 4
+      SERVER_WORKER_AMOUNT: 2
+      SERVER_THREAD_AMOUNT: 2
       # 数据库迁移配置
       MIGRATION_ENABLED: 'true'
       # JWT加密秘钥
@@ -106,7 +106,7 @@ services:
     environment: 
       # 模式为celery，代表启用celery异步任务队列
       MODE: celery
-      CELERY_WORKER_AMOUNT: 4
+      CELERY_WORKER_AMOUNT: 2
       # 数据库迁移配置
       MIGRATION_ENABLED: 'false'
       # JWT加密秘钥
