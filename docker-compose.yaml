@@ -180,7 +180,7 @@ services:
     volumes:
       - ./volumes/redis/data:/data
     # 启动redis服务是配置
-    command: redis-server --requirepass llmops123456
+    command: redis-server --requirepass ${REDIS_PASSWORD}
     healthcheck:
       test: ["CMD", "redis-cli", "ping"]
       interval: 1m30s
@@ -207,10 +207,10 @@ services:
     healthcheck:
       # 每隔一s发起一个健康测试，最多重试30次
       test: ["CMD", "pg_isready", "-U", "postgres"]
-      interval: 1s 
+      interval: 10s
       timeout: 3s
       retries: 30
-      start_period: 30s
+      start_period: 60s
     ports:
       - "5432:5432"
   llmops-weaviate:
