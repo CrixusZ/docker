@@ -253,7 +253,7 @@ services:
       - ./nginx/conf.d:/etc/nginx/conf.d
       - ./nginx/ssl:/etc/ssl
     depends_on:
-      - llmops-frontend
+      - llmops-ui
       - llmops-api
     ports:
       - "80:80"
