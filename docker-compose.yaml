@@ -26,6 +26,7 @@ services:
       - .env 
     volumes:
       - ./volumes/app/storage:/app/api/storage
+      - ./volumes/app/embeddings:/app/api/internal/core/embeddings
     environment: 
       # 模式为API，代表启用API服务
       MODE: api
@@ -79,7 +80,8 @@ services:
       LANGSMITH_API_KEY: ${LANGSMITH_API_KEY}
       LANGSMITH_PROJECT: LLMOpsDev
       # HuggingFace配置
-      TRANSFORMERS_OFFLINE: 1
+      TRANSFORMERS_OFFLINE: 0
+      HF_ENDPOINT: https://hf-mirror.com
       HUGGINGFACEHUB_API_TOKEN: ${HUGGINGFACEHUB_API_TOKEN}
       # 辅助Agent智能体应用id标识
       ASSISTANT_AGENT_ID: ${ASSISTANT_AGENT_ID}
@@ -105,10 +107,13 @@ services:
     restart: always
     volumes:
       - ./volumes/app/storage:/app/api/storage
+      - ./volumes/app/embeddings:/app/api/internal/core/embeddings
     environment:
       MODE: celery
       CELERY_WORKER_AMOUNT: 2
       MIGRATION_ENABLED: 'false'
+      TRANSFORMERS_OFFLINE: 0 
+      HF_ENDPOINT: https://hf-mirror.com
     depends_on:
       - llmops-db
       - llmops-redis
